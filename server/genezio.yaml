@@ -7,7 +7,7 @@ sdk:
   path: ./../client/src/sdk
 frontend:
   path: ./../client/build
-  subdomain: white-noisy-ptarmigan
+  subdomain: purple-cute-capybara
 classes:
   - path: ./controllers/options.js
     type: jsonrpc
