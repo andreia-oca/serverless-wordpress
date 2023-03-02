@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    target-directory: "dev"
+    target-branch: "dev"
     directory: "/server"
     open-pull-requests-limit: 5
     schedule:
@@ -15,7 +15,7 @@ updates:
       time: "10:00"
       timezone: Europe/Bucharest
   - package-ecosystem: "npm"
-    target-directory: "dev"
+    target-branch: "dev"
     directory: "/client"
     open-pull-requests-limit: 5
     schedule:
