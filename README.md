@@ -1,5 +1,7 @@
 # Serverless Wordpress with genezio
 
+[![deployed with: genezio](https://img.shields.io/badge/deployed_with-genezio-6742c1.svg?labelColor=62C353&style=flat-square)](https://github.com/genez-io/genezio)
+
 This project is a minimalist wordpress-like blog deployed and hosted using [genezio](https://github.com/Genez-io/genezio).
 
 The project has the following features:
