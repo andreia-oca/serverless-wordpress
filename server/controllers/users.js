@@ -23,6 +23,7 @@ export class UsersController {
   }
 
   async register(req) {
+    console.log(req.body)
     if (!req.body.email || !req.body.password || !req.body.nicename) {
       return { success: false, msg: "Error: missing required parameters" }
     }
@@ -57,17 +58,17 @@ export class UsersController {
     }
   }
 
-  async registerAdmin(req) {    
-    console.log(`Registering admin with name ${req.body.nicename} and email ${req.body.email}...`)
+  async registerAdmin(email, password, nicename) {
+    console.log(`Registering admin with name ${nicename} and email ${email}...`)
 
-    const user = await wp_users.findOne({ user_email: req.body.email });
+    const user = await wp_users.findOne({ user_email: email });
     if (user) {
       return { success: false, msg: "Error: User already exists" }
     } else {
-      const saltedPassword = await saltPassword(req.body.password)
+      const saltedPassword = await saltPassword(password)
       await wp_users.create({
-        user_email: req.body.email,
-        user_nicename: req.body.nicename,
+        user_email: email,
+        user_nicename: nicename,
         user_pass: saltedPassword,
         user_type: "admin",
       });
@@ -76,17 +77,17 @@ export class UsersController {
     }
   }
 
-  async registerEditor(req) {
-    console.log(`Registering user with name ${req.body.nicename} and email ${req.body.email}...`)
+  async registerEditor(email, password, nicename) {
+    console.log(`Registering user with name ${nicename} and email ${email}...`)
 
-    const user = await wp_users.findOne({ user_email: req.body.email });
+    const user = await wp_users.findOne({ user_email: email });
     if (user) {
       return { success: false, msg: "User already exists" }
     } else {
-      const saltedPassword = await saltPassword(req.body.password)
+      const saltedPassword = await saltPassword(password)
       await wp_users.create({
-        user_email: req.body.email,
-        user_nicename: req.body.nicename,
+        user_email: email,
+        user_nicename: nicename,
         user_pass: saltedPassword,
         user_type: "editor",
       });
@@ -166,8 +167,8 @@ export class UsersController {
 
 
   async login(req) {
-    console.log(`Logging in user with email ${email}...`)
-    
+    console.log(req.body)
+
     if (!req.body.email || !req.body.password) {
       return { success: false, msg: "Error: Missing parameters" }
     }
@@ -175,13 +176,13 @@ export class UsersController {
     console.log(`Password: ${req.body.password}`, `Email ${req.body.email}`)
 
     const user = await wp_users.findOne({ user_email: req.body.email });
-    
+
     if (!user) {
       return { success: false, msg: "User not found" };
     }
 
     const isValid = await validatePassword(req.body.password, user.user_pass)
-    
+
     if (isValid) {
       user.user_pass = null;
       const token = jwt.sign(user.toJSON(), "secret", {
@@ -198,7 +199,7 @@ export class UsersController {
 
   async checkSession(req) {
     console.log("Check session request received...")
-    
+
     if (!req.token) {
       return { success: false, msg: "Error: Not Authorized, token is missing" }
     }

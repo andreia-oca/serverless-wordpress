@@ -16,9 +16,10 @@ export class TagsController {
    * Private method used to connect to the DB.
    */
   #connect() {
+    mongoose.set('strictQuery', true);
     mongoose.connect(MONGO_DB_URI);
   }
-  
+
   // get all tags from the database
   async getTags(req) {
     const authObject = await reqAuth(req.token);
@@ -45,7 +46,7 @@ export class TagsController {
     if (!authObject.success) {
       return authObject;
     }
-    
+
     await wp_tags.updateOne({ _id: req.body.id }, { tag_value: req.body.tag_value });
     return { success: true, msg: "success" };
   }

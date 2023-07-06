@@ -16,6 +16,7 @@ export class OptionsController {
    * Private method used to connect to the DB.
    */
   #connect() {
+    mongoose.set('strictQuery', true);
     mongoose.connect(MONGO_DB_URI);
   }
 

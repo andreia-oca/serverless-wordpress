@@ -1,10 +1,6 @@
-
 import bcrypt from "bcryptjs"
 import { ActiveSession } from "./../models/activeSession";
 import { wp_users } from "./../models/wp_users";
-
-import dotenv from "dotenv";
-dotenv.config();
 
 export const MONGO_DB_URI = process.env.MONGO_DB_URI;
 
