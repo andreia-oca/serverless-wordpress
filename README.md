@@ -2,6 +2,7 @@
 
 [![deployed with: genezio](https://img.shields.io/badge/deployed_with-genezio-6742c1.svg?labelColor=62C353&style=flat-square)](https://github.com/genez-io/genezio)
 
+A live demo is available [here](https://purple-cute-capybara.app.genez.io).
 This project is a minimalist wordpress-like blog deployed and hosted using [genezio](https://github.com/Genez-io/genezio).
 
 The project has the following features:
@@ -13,7 +14,7 @@ The project has the following features:
 - posts/articles management (create, get)
 - minimal UI build to interact with
 
-You can interact with a deployed [demo](https://white-noisy-ptarmigan.app.genez.io/posts) to get the gist of the project.
+You can interact with a deployed [demo](https://purple-cute-capybara.app.genez.io/posts) to get the gist of the project.
 
 ## Technical details
 

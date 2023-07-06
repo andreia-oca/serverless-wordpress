@@ -1,12 +1,13 @@
 name: serverless-wordpress
-region: eu-central-1
+region: us-east-1
 sdk:
   language: js
-  options:
-    runtime: browser
-  path: ./../client/src/sdk
+  path: ../client/src/sdk
+scripts:
+  preBackendDeploy: npm install
+  preFrontendDeploy: cd ../client && npm install && npm run build
 frontend:
-  path: ./../client/build
+  path: ../client/build
   subdomain: purple-cute-capybara
 classes:
   - path: ./controllers/options.js

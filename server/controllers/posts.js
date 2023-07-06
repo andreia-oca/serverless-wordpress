@@ -16,6 +16,7 @@ export class PostsController {
      * Private method used to connect to the DB.
      */
     #connect() {
+        mongoose.set('strictQuery', true);
         mongoose.connect(MONGO_DB_URI);
     }
 
@@ -75,7 +76,7 @@ export class PostsController {
 
     async getAllPosts() {
         console.log("Get all posts...")
-    
+
         const posts = await wp_posts.find();
 
         if (posts.length == 0) {

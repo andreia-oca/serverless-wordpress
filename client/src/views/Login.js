@@ -18,7 +18,7 @@ export default (props) => {
 
     setError("");
 
-    const res = await UsersController.login(email, password);
+    const res = await UsersController.login({body:{email: email, password: password}});
 
     if (!res.success) {
       setError(res.msg);
@@ -75,7 +75,7 @@ export default (props) => {
                     <span>
                       Don't have an account?{" "}
                     <a href="/register">Register</a>
-                      
+
                       </span>
                   </div>
                 </form>
